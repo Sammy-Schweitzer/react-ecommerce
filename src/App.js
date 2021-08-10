@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { allProducts } from "./redux/actions/products";
+import { useDispatch, useSelector } from "react-redux";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.allProducts.products);
+  console.log(products);
+
+  useEffect(() => {
+    dispatch(allProducts());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Welcome React
-        </a>
-      </header>
+    <div>
+      <h3 className="text-center">E-Commerce App</h3>
     </div>
   );
-}
+};
 
 export default App;
